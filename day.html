@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Women's Day Surprise</title>
+
+<style>
+
+body{
+margin:0;
+background:linear-gradient(135deg,#0f001a,#2b0035);
+color:#ff7ad9;
+font-family:Arial;
+text-align:center;
+}
+
+/* buttons */
+
+button{
+padding:12px 25px;
+font-size:18px;
+margin-top:20px;
+cursor:pointer;
+background:#ff4dc4;
+border:none;
+color:white;
+border-radius:6px;
+}
+
+/* hidden sections */
+
+#analysis,#buttonPage,#result{
+display:none;
+}
+
+/* photo container */
+
+#photos{
+display:flex;
+justify-content:center;
+align-items:center;
+margin-top:30px;
+width:100%;
+}
+
+/* photo styling */
+
+#photos img{
+max-width:90%;
+max-height:70vh;
+object-fit:contain;
+border-radius:20px;
+box-shadow:0 0 25px #ff69b4;
+transition:0.6s;
+}
+
+/* flower animation */
+
+.fall{
+position:absolute;
+font-size:30px;
+animation:fall 5s linear infinite;
+pointer-events:none;
+}
+
+@keyframes fall{
+0%{top:-50px;}
+100%{top:100vh;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- music -->
+
+<audio autoplay loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- countdown -->
+
+<div id="countdownPage">
+<h1>A Special Message is Loading...</h1>
+<h1 id="countdown">3</h1>
+</div>
+
+<!-- analysis -->
+
+<div id="analysis">
+<h2>Analyzing the Most Powerful Force...</h2>
+<p id="logic"></p>
+</div>
+
+<!-- button -->
+
+<div id="buttonPage">
+<h1>Result Found 👑</h1>
+<h2>WOMAN</h2>
+<button onclick="showFinal()">🎁 Click for Secret Message</button>
+</div>
+
+<!-- final -->
+
+<div id="result">
+
+<h1>🌸 Happy Women's Day 🌸</h1>
+
+<p>
+Women are not just part of the world,<br>
+they are the reason the world exists.
+</p>
+
+<p>
+Respect 💖 Support 🤝 Equality ⚖️
+</p>
+
+<h2>You are Amazing 👑</h2>
+
+<div id="photos">
+<img id="slide" src="w1.jpg">
+</div>
+
+</div>
+
+<script>
+
+/* countdown */
+
+let count=3;
+
+let countdown=setInterval(function(){
+
+document.getElementById("countdown").innerHTML=count;
+
+count--;
+
+if(count<0){
+
+clearInterval(countdown);
+
+document.getElementById("countdownPage").style.display="none";
+
+startAnalysis();
+
+}
+
+},1000);
+
+/* analysis */
+
+function startAnalysis(){
+
+document.getElementById("analysis").style.display="block";
+
+let steps=[
+
+"Checking Strength 💪 ... 100%",
+
+"Checking Kindness 💖 ... 100%",
+
+"Checking Courage 🔥 ... 100%",
+
+"Checking Wisdom 🧠 ... 100%"
+
+];
+
+let i=0;
+
+let interval=setInterval(function(){
+
+document.getElementById("logic").innerHTML=steps[i];
+
+i++;
+
+if(i>=steps.length){
+
+clearInterval(interval);
+
+setTimeout(showButton,1500);
+
+}
+
+},1200);
+
+}
+
+/* show button */
+
+function showButton(){
+
+document.getElementById("analysis").style.display="none";
+
+document.getElementById("buttonPage").style.display="block";
+
+}
+
+/* final page */
+
+function showFinal(){
+
+document.getElementById("buttonPage").style.display="none";
+
+document.getElementById("result").style.display="block";
+
+setInterval(createFlower,300);
+
+}
+
+/* flower animation */
+
+function createFlower(){
+
+let emojis=["🌸","🌹","💖","✨"];
+
+let e=document.createElement("div");
+
+e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+
+e.className="fall";
+
+e.style.left=Math.random()*window.innerWidth+"px";
+
+document.body.appendChild(e);
+
+setTimeout(()=>{e.remove()},5000);
+
+}
+
+/* slideshow */
+
+let images=["s.jpeg","ww.jpeg","we.jpeg"];
+
+let index=0;
+
+setInterval(function(){
+
+index++;
+
+if(index>=images.length){
+
+index=0;
+
+}
+
+document.getElementById("slide").src=images[index];
+
+},3500);
+
+</script>
+
+</body>
+</html>
